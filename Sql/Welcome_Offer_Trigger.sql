@@ -1,0 +1,12 @@
+DELIMITER $$
+DROP TRIGGER IF EXISTS `multicloud`.`customer_AFTER_INSERT` $$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `multicloud`.`customer_BEFORE_INSERT`;
+
+DELIMITER $$
+USE `multicloud`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `multicloud`.`customer_BEFORE_INSERT` BEFORE INSERT ON `customer` FOR EACH ROW
+BEGIN
+SET new.customer_offer_id = '4326';
+END$$
+DELIMITER ;
